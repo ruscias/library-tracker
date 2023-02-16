@@ -69,6 +69,23 @@ function statusInput() {
   updateTable();
 }
 
+function addBook(form) {
+  console.log(form);
+  if (!form.title.value ||
+      !form.author.value ||
+      !form.pages.value) {
+    return;
+  }
+  modal.style.display = 'none';
+  const newTitle = form.title.value;
+  const newAuthor = form.author.value;
+  const newPages = form.pages.value;
+  const newBook = new Book(newTitle, newAuthor, newPages);
+  console.log(newBook);
+  books.push(newBook);
+  updateTable();
+}
+
 const addButton = document.querySelector('button#add');
 const deleteAllButton = document.querySelector('button#delete-all');
 
@@ -93,6 +110,7 @@ console.log(deleteAllButton);
 // Being able to interact with the table directly would be cool
 // The UI still needs some love to look modern
 // Apparently, I need to be able to change each book's read status directly
+
 
 // Get the modal
 const modal = document.querySelector('div#add-book-modal');

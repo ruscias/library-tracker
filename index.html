@@ -45,7 +45,15 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <p>Add a book</p>
+      <form action="" method="get">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required>
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author" required>
+        <label for="pages">Pages</label>
+        <input type="text" name="pages" id="pages" required>
+        <input type="button" name="button" value="Add" onClick="addBook(this.form)">
+      </form>
     </div>
   </div>
 </body>
