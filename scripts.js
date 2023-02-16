@@ -22,10 +22,19 @@ const tableBody = document.querySelector('tbody');
 updateTable();
 
 function clearTable() {
-  console.log('yep');
+  tableBody.replaceChildren();
+}
+
+function getNewStatusButton() {
+  const newButton = document.createElement('button');
+  newButton.className = 'status';
+  newButton.innerText = 'status';
+  newButton.addEventListener('click', statusInput);
+  return newButton;
 }
 
 function updateTable() {
+  clearTable();
   for (const book of books) {
     const newRow = tableBody.appendChild(document.createElement('tr'));
     for (const prop in book) {
@@ -36,9 +45,7 @@ function updateTable() {
       }
     }
     const newCell = document.createElement('td');
-    const buttonToModifyBookStatus = document.createElement('button');
-    buttonToModifyBookStatus.className = 'status';
-    buttonToModifyBookStatus.innerText = 'status';
+    const buttonToModifyBookStatus = getNewStatusButton();
     newCell.appendChild(buttonToModifyBookStatus);
     newRow.appendChild(newCell);
   }
@@ -64,17 +71,12 @@ function statusInput() {
 
 const addButton = document.querySelector('button#add');
 const deleteAllButton = document.querySelector('button#delete-all');
-const statusButtons = document.querySelectorAll('button.status');
+
+addButton.addEventListener('click', success);
+deleteAllButton.addEventListener('click', clearTable);
 
 console.log(addButton);
 console.log(deleteAllButton);
-
-for (const button of statusButtons) {
-  button.addEventListener('click', statusInput);
-}
-
-addButton.addEventListener('click', success);
-deleteAllButton.addEventListener('click', success);
 
 // I wish you luck man
 // I am sorry I didn't use git
@@ -91,3 +93,29 @@ deleteAllButton.addEventListener('click', success);
 // Being able to interact with the table directly would be cool
 // The UI still needs some love to look modern
 // Apparently, I need to be able to change each book's read status directly
+
+// Get the modal
+const modal = document.querySelector('div#add-book-modal');
+// Get the button that opens the modal
+const add = document.querySelector('button#add');
+// Get the <span> element that closes the modal
+const modalClose = document.querySelector('span.close');
+
+console.log(modalClose);
+
+const getModalAddBook= function() {
+  modal.style.display = 'block';
+};
+
+const closeModal = function(event) {
+  if (event.target === modal || event.target === modalClose) {
+    modal.style.display = 'none';
+  }
+};
+
+// When the user clicks the button, open the modal
+add.addEventListener('click', getModalAddBook);
+// When the user clicks on <span> (x), close the modal
+modalClose.addEventListener('click', closeModal);
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', closeModal);
