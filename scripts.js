@@ -69,11 +69,19 @@ function statusInput() {
   updateTable();
 }
 
-function addBook(form) {
-  console.log(form);
-  if (!form.title.value ||
-      !form.author.value ||
-      !form.pages.value) {
+function deleteTable() {
+  clearTable();
+  while (books.length > 0) {
+    books.pop();
+  }
+}
+
+function addBook() {
+  const form = this.parentElement;
+  if (!form.pages.value||
+    !form.author.value ||
+    !form.title.value) {
+    window.alert('All fields are required!');
     return;
   }
   modal.style.display = 'none';
@@ -82,15 +90,21 @@ function addBook(form) {
   const newPages = form.pages.value;
   const newBook = new Book(newTitle, newAuthor, newPages);
   console.log(newBook);
-  books.push(newBook);
+  const findTitle = (book) => book.title === newTitle;
+  const bookExists = books.some(findTitle);
+  console.log(bookExists);
+  if (!bookExists) {
+    books.push(newBook);
+  }
   updateTable();
+  form.reset();
 }
 
 const addButton = document.querySelector('button#add');
 const deleteAllButton = document.querySelector('button#delete-all');
 
 addButton.addEventListener('click', success);
-deleteAllButton.addEventListener('click', clearTable);
+deleteAllButton.addEventListener('click', deleteTable);
 
 console.log(addButton);
 console.log(deleteAllButton);
@@ -118,8 +132,8 @@ const modal = document.querySelector('div#add-book-modal');
 const add = document.querySelector('button#add');
 // Get the <span> element that closes the modal
 const modalClose = document.querySelector('span.close');
-
-console.log(modalClose);
+const updateBooksArrayButton = document.querySelector('button#update-books-array');
+console.log(updateBooksArrayButton);
 
 const getModalAddBook= function() {
   modal.style.display = 'block';
@@ -137,3 +151,5 @@ add.addEventListener('click', getModalAddBook);
 modalClose.addEventListener('click', closeModal);
 // When the user clicks anywhere outside of the modal, close it
 window.addEventListener('click', closeModal);
+
+updateBooksArrayButton.addEventListener('click', addBook);

@@ -140,3 +140,11 @@ tr:nth-child(odd) td {
   text-decoration: none;
   cursor: pointer;
 }
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  align-items: space-evenly;
+  justify-content: space-evenly;
+}
