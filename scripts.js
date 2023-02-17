@@ -109,23 +109,6 @@ deleteAllButton.addEventListener('click', deleteTable);
 console.log(addButton);
 console.log(deleteAllButton);
 
-// I wish you luck man
-// I am sorry I didn't use git
-// This place is basically a pile of code without comments or git messages
-// Trying to communicate next steps...
-// Well, I am trying to get a pop up when I hit add that will take...
-// ...the parameters needed to create a new Book object
-// I'd like to push that new Book to the books array
-// Then I suppose you might use the updateTable function to update the table...
-// ...sounds too easy, I agree. Let's see what happens...
-// I'd like the delete all button to delete everything in that array
-// I guess if that all works... the assignment is done...
-// I have lots of feature ideas
-// Being able to interact with the table directly would be cool
-// The UI still needs some love to look modern
-// Apparently, I need to be able to change each book's read status directly
-
-
 // Get the modal
 const modal = document.querySelector('div#add-book-modal');
 // Get the button that opens the modal
