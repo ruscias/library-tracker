@@ -74,6 +74,7 @@ function createCompletedComponents(newComponent) {
   newCheckboxInput.type = 'checkbox';
   newCheckboxInput.name = 'is-read';
   newCheckboxInput.id = 'is-read';
+  newCheckboxInput.checked = true;
   // add delete svg
   const newDeleteSvg = document.createElement('img');
   newDeleteSvg.className = 'delete-svg svg';
@@ -96,25 +97,15 @@ function createCardComponent(prop, book) {
 }
 
 function createBookCard(book) {
-  const newCard = document.createElement('div.card');
+  const newCard = document.createElement('div');
+  newCard.className = 'card';
   for (const prop in book) {
-    const newComponent = createCardComponent(prop, book);
-    newCard.appendChild(newComponent);
+    if (book.hasOwnProperty(prop)) {
+      console.log(prop);
+      const newComponent = createCardComponent(prop, book);
+      newCard.appendChild(newComponent);
+    }
   }
-  const newTitle = document.createElement('div.card-field.title');
-  const newAuthor = document.createElement('div.card-field.author');
-  const newPages = document.createElement('div.card-field.pages');
-  const newRead = document.createElement('div.card-field.bottom-row');
-  const newEditSvg = document.createElement('img.edit-svg.svg');
-  const newCheckboxInput = document.createElement('input');
-  const newDeleteSvg = document.createElement('img.delete-svg.svg');
-  newCard.appendChild(newTitle);
-  newCard.appendChild(newAuthor);
-  newCard.appendChild(newPages);
-  newCard.appendChild(newRead);
-  newCard.appendChild(newEditSvg);
-  newCard.appendChild(newCheckboxInput);
-  newCard.appendChild(newDeleteSvg);
   return newCard;
 }
 
