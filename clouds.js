@@ -200,7 +200,7 @@ function processModalSubmit(e) {
   const bookExists = getBookIndex(newBook.title);
 
   // logic for handling add or update
-  if (bookExists) {
+  if (bookExists >= 0) {
     updateBooksArray(bookExists, newBook);
   } else {
     addBookToBooks(newBook);
