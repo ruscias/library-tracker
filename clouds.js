@@ -29,7 +29,6 @@ const localStorageBooks = localStorage.getItem('books');
 // set books array to localStorage value if they exist, else to dummy values
 const books = localStorageBooks ? localStorageBooks : dummyArray;
 
-// render the current array of books
 // when add button is clicked, open the modal to add a book
 // ... call prepareModal to populate it correctly
 // ... upon submission, add that book to the array
@@ -56,6 +55,7 @@ const books = localStorageBooks ? localStorageBooks : dummyArray;
 const allBookCardsView = document.querySelector('div.all-book-cards-view');
 
 // initial functions we need to run for page content
+// render the current array of books
 renderBooks(books);
 
 // functions
