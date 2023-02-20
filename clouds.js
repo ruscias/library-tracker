@@ -1,5 +1,4 @@
-console.log('hello world!');
-
+// global variables
 // declare a book class
 class Book {
   constructor(title, author, pages, completed = false) {
@@ -46,13 +45,16 @@ const books = localStorageBooks ? localStorageBooks : dummyArray;
 // when there are books, when a user clicks delete icon, delete book from view, the array, and from local storage
 // when user clicks current book checkbox, update whether current book has been read or not
 
-
-// variables
-
 // query selectors
+const allBookCardsView = document.querySelector('div.all-book-cards-view');
+const addButton = document.querySelector('.add-book-btn');
+const uploadButton = document.querySelector('.upload-books-btn');
+const deleteAllButton = document.querySelector('.delete-all-books-btn');
+const searchSvg = document.querySelector('.search-svg');
+const inputSearch = document.querySelector('.input-search');
 
 // add event listeners
-const allBookCardsView = document.querySelector('div.all-book-cards-view');
+deleteAllButton.addEventListener('click', deleteAllBookCards);
 
 // initial functions we need to run for page content
 // render the current array of books
