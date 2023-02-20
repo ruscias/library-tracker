@@ -171,6 +171,14 @@ function addBookCard() {
   // push it to local storage
 }
 
+function addBookToBooks() {
+  console.log('add');
+}
+
+function updateBooksArray() {
+  console.log('update');
+}
+
 function processModalSubmit(e) {
   e.preventDefault();
 
@@ -188,9 +196,15 @@ function processModalSubmit(e) {
     }
   }
 
-  console.log(`book index: ${getBookIndex(newBook.title)}`);
+  // set bookExists to index of book in books or undefined if it doesn't exist
+  const bookExists = getBookIndex(newBook.title);
 
-  console.log(newBook);
+  // logic for handling add or update
+  if (bookExists) {
+    updateBooksArray(bookExists, newBook);
+  } else {
+    addBookToBooks(newBook);
+  }
 }
 
 function hideModal(e) {
