@@ -74,6 +74,27 @@ function toTitleCase(str) {
   return lowercaseCharArray.join('');
 }
 
+// function for checking if a book already exists in the books array...
+// ... based on its title
+function getBookIndex(title) {
+  // loop through the books array, using entries to get index and book
+  for (const [index, book] of books.entries()) {
+    // loop through each property by each book class in the array
+    for (const prop in book) {
+      // if the prop is title...
+      if (prop === 'title') {
+        console.log(book);
+        // then check if the book's title prop is equal to...
+        // ... the title we passed as a parameter
+        if (book['title'].toLowerCase() === title.toLowerCase()) {
+          // if it is, return the index of the book
+          return index;
+        }
+      }
+    }
+  }
+}
+
 function createCompletedComponents(newComponent, completed) {
   // add edit svg
   const newEditSvg = document.createElement('img');
@@ -167,7 +188,7 @@ function processModalSubmit(e) {
     }
   }
 
-  // const bookExists = getBook(newBook['book-title']);
+  console.log(`book index: ${getBookIndex(newBook.title)}`);
 
   console.log(newBook);
 }
