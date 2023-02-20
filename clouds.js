@@ -64,7 +64,7 @@ function toTitleCase(str) {
   return lowercaseCharArray.join('');
 }
 
-function createCompletedComponents(newComponent) {
+function createCompletedComponents(newComponent, completed) {
   // add edit svg
   const newEditSvg = document.createElement('img');
   newEditSvg.className = 'edit-svg svg';
@@ -74,7 +74,7 @@ function createCompletedComponents(newComponent) {
   newCheckboxInput.type = 'checkbox';
   newCheckboxInput.name = 'is-read';
   newCheckboxInput.id = 'is-read';
-  newCheckboxInput.checked = true;
+  newCheckboxInput.checked = completed ? true : false;
   // add delete svg
   const newDeleteSvg = document.createElement('img');
   newDeleteSvg.className = 'delete-svg svg';
@@ -89,7 +89,7 @@ function createCardComponent(prop, book) {
   const newComponent = document.createElement('div');
   newComponent.className = `card-field ${prop}`;
   if (prop === 'completed') {
-    createCompletedComponents(newComponent);
+    createCompletedComponents(newComponent, book[prop]);
     return newComponent;
   }
   newComponent.innerText = `${book[prop]}`;
