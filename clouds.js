@@ -55,6 +55,7 @@ const inputSearch = document.querySelector('.input-search');
 
 // add event listeners
 deleteAllButton.addEventListener('click', deleteAllBookCards);
+addButton.addEventListener('click', addBookCard);
 
 // initial functions we need to run for page content
 // render the current array of books
@@ -125,4 +126,6 @@ function renderBooks(books) {
   }
 }
 
-
+function addBookCard() {
+  console.log(this);
+}
