@@ -54,6 +54,7 @@ const searchSvg = document.querySelector('.search-svg');
 const inputSearch = document.querySelector('.input-search');
 const modal = document.querySelector('.modal');
 const closeModal = document.querySelector('.close-modal');
+const form = document.querySelector('.actual-modal-form-element');
 
 // add event listeners
 deleteAllButton.addEventListener('click', deleteAllBookCards);
