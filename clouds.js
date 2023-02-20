@@ -53,10 +53,13 @@ const deleteAllButton = document.querySelector('.delete-all-books-btn');
 const searchSvg = document.querySelector('.search-svg');
 const inputSearch = document.querySelector('.input-search');
 const modal = document.querySelector('.modal');
+const closeModal = document.querySelector('.close-modal');
 
 // add event listeners
 deleteAllButton.addEventListener('click', deleteAllBookCards);
 addButton.addEventListener('click', addBookCard);
+modal.addEventListener('click', hideModal);
+closeModal.addEventListener('click', hideModal);
 
 // initial functions we need to run for page content
 // render the current array of books
@@ -143,4 +146,10 @@ function addBookCard() {
   prepareModal('add');
   // update books array
   // push it to local storage
+}
+
+function hideModal(e) {
+  if (e.target === modal || e.target === closeModal) {
+    modal.style.display = 'none';
+  }
 }
