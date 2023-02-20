@@ -1,3 +1,4 @@
+// declare Book class
 function Book(title, author, pages, completed = false) {
   this.title = title;
   this.author = author;
@@ -5,6 +6,7 @@ function Book(title, author, pages, completed = false) {
   this.completed = completed;
 }
 
+// add changeCompleted function to Book class
 Book.prototype.changeCompleted = function() {
   this.completed = this.completed ? false : true;
 };
