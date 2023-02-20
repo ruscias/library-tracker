@@ -52,6 +52,7 @@ const uploadButton = document.querySelector('.upload-books-btn');
 const deleteAllButton = document.querySelector('.delete-all-books-btn');
 const searchSvg = document.querySelector('.search-svg');
 const inputSearch = document.querySelector('.input-search');
+const modal = document.querySelector('.modal');
 
 // add event listeners
 deleteAllButton.addEventListener('click', deleteAllBookCards);
@@ -116,7 +117,7 @@ function deleteAllBookCards() {
   while (allBookCardsView.lastElementChild) {
     allBookCardsView.removeChild(allBookCardsView.lastElementChild);
   }
-};
+}
 
 function renderBooks(books) {
   deleteAllBookCards();
@@ -126,6 +127,20 @@ function renderBooks(books) {
   }
 }
 
+function prepareModal(modalType) {
+  console.log(modal);
+  const formTitle = document.querySelector('h1.form-title');
+  if (modalType === 'add') {
+    formTitle.innerText = 'Add Book';
+  } else {
+    formTitle.innerText = 'Edit Book';
+    // update form with current book's fields
+  }
+}
+
 function addBookCard() {
-  console.log(this);
+  modal.style.display = 'block';
+  prepareModal('add');
+  // update books array
+  // push it to local storage
 }
