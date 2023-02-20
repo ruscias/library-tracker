@@ -109,7 +109,7 @@ function createBookCard(book) {
   return newCard;
 }
 
-function deleteAllBookCards(books) {
+function deleteAllBookCards() {
   while (allBookCardsView.lastElementChild) {
     allBookCardsView.removeChild(allBookCardsView.lastElementChild);
   }
