@@ -24,9 +24,11 @@ const dummyArray = [
   theHobbit, tuesdays,
 ];
 
-// create an array of books via:
-// ... accessing books from local storage
-// ... else use dummy values
+// get books value from local storage (or null if it doesn't exist)
+const localStorageBooks = localStorage.getItem('books');
+// set books array to localStorage value if they exist, else to dummy values
+const books = localStorageBooks ? localStorageBooks : dummyArray;
+
 // render the current array of books
 // when add button is clicked, open the modal to add a book
 // ... call prepareModal to populate it correctly
@@ -47,9 +49,27 @@ const dummyArray = [
 
 
 // variables
+
 // query selectors
+
 // add event listeners
+const allBookCardsView = document.querySelector('div.all-book-cards-view');
+
 // initial functions
+
 // functions
+function deleteAllBookCards(books) {
+  while (allBookCardsView.lastElementChild) {
+    allBookCardsView.removeChild(allBookCardsView.lastElementChild);
+  }
+};
+
+function createBookCard(book) {
+  console.log('create');
+}
+
+function renderBooks(books) {
+  console.log('render');
+}
 
 
