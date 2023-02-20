@@ -61,6 +61,7 @@ deleteAllButton.addEventListener('click', deleteAllBookCards);
 addButton.addEventListener('click', addBookCard);
 modal.addEventListener('click', hideModal);
 closeModal.addEventListener('click', hideModal);
+form.addEventListener('submit', processModalSubmit);
 
 // initial functions we need to run for page content
 // render the current array of books
@@ -147,6 +148,26 @@ function addBookCard() {
   prepareModal('add');
   // update books array
   // push it to local storage
+}
+
+function processModalSubmit(e) {
+  e.preventDefault();
+
+  const data = new FormData(e.target);
+  const newBook = {};
+  for (const [name, value] of data) {
+    if (name === 'book-read') {
+      newBook[name] = true;
+    } else {
+      newBook[name] = value ? value : '';
+    }
+  }
+
+  if (!newBook['book-read']) {
+    newBook['book-read'] = false;
+  }
+
+  console.log(newBook);
 }
 
 function hideModal(e) {
