@@ -116,6 +116,7 @@ function deleteAllBookCards() {
 };
 
 function renderBooks(books) {
+  deleteAllBookCards();
   for (const book of books) {
     const newCard = createBookCard(book);
     allBookCardsView.appendChild(newCard);
