@@ -10,6 +10,11 @@ class Book {
   }
 }
 
+// add changeCompleted function to Book class
+Book.prototype.changeCompleted = function() {
+  this.completed = this.completed ? false : true;
+};
+
 // create dummy books
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295');
 const tuesdays = new Book('Tuesdays with Morrie', 'Mitch Albom', '192', true);
