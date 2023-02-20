@@ -116,7 +116,10 @@ function deleteAllBookCards() {
 };
 
 function renderBooks(books) {
-  console.log('render');
+  for (const book of books) {
+    const newCard = createBookCard(book);
+    allBookCardsView.appendChild(newCard);
+  }
 }
 
 
