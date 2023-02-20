@@ -56,6 +56,7 @@ const books = localStorageBooks ? localStorageBooks : dummyArray;
 const allBookCardsView = document.querySelector('div.all-book-cards-view');
 
 // initial functions we need to run for page content
+renderBooks(books);
 
 // functions
 function toTitleCase(str) {
@@ -101,7 +102,6 @@ function createBookCard(book) {
   newCard.className = 'card';
   for (const prop in book) {
     if (book.hasOwnProperty(prop)) {
-      console.log(prop);
       const newComponent = createCardComponent(prop, book);
       newCard.appendChild(newComponent);
     }
