@@ -1,7 +1,7 @@
 // global variables
 // declare a book class
 class Book {
-  constructor(title, author, pages, completed = false) {
+  constructor(title = '', author = '', pages = '', completed = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -153,19 +153,21 @@ function addBookCard() {
 function processModalSubmit(e) {
   e.preventDefault();
 
+  // this gets the form inputs and turns it into an object
   const data = new FormData(e.target);
-  const newBook = {};
-  for (const [name, value] of data) {
-    if (name === 'book-read') {
-      newBook[name] = true;
+  const newBook = new Book();
+
+  // loop through the data object of form data and update the newBook object
+  for (const [nameRaw, value] of data) {
+    const nameModified = nameRaw.split('-')[1];
+    if (nameRaw === 'book-read') {
+      newBook['completed'] = true;
     } else {
-      newBook[name] = value ? value : '';
+      newBook[nameModified] = value ? value : '';
     }
   }
 
-  if (!newBook['book-read']) {
-    newBook['book-read'] = false;
-  }
+  // const bookExists = getBook(newBook['book-title']);
 
   console.log(newBook);
 }
