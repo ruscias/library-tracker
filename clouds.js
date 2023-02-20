@@ -48,6 +48,7 @@ const books = localStorageBooks ? localStorageBooks : dummyArray;
 // query selectors
 const allBookCardsView = document.querySelector('div.all-book-cards-view');
 const addButton = document.querySelector('.add-book-btn');
+const allEditSvgs = document.querySelectorAll('img.edit-svg');
 const uploadButton = document.querySelector('.upload-books-btn');
 const deleteAllButton = document.querySelector('.delete-all-books-btn');
 const searchSvg = document.querySelector('.search-svg');
@@ -58,14 +59,17 @@ const form = document.querySelector('.actual-modal-form-element');
 
 // add event listeners
 deleteAllButton.addEventListener('click', deleteAllBookCards);
-addButton.addEventListener('click', addBookCard);
+addButton.addEventListener('click', showModal);
 modal.addEventListener('click', hideModal);
 closeModal.addEventListener('click', hideModal);
 form.addEventListener('submit', processModalSubmit);
+for (const item of allEditSvgs) {
+  item.addEventListener('click', showModal);
+}
 
 // initial functions we need to run for page content
 // render the current array of books
-renderBooks(books);
+// renderBooks(books);
 
 // functions
 function toTitleCase(str) {
@@ -164,11 +168,13 @@ function prepareModal(modalType) {
   }
 }
 
-function addBookCard() {
+function showModal(e) {
   modal.style.display = 'block';
-  prepareModal('add');
-  // update books array
-  // push it to local storage
+  if (e.target.className === 'add-book-btn') {
+    prepareModal('add');
+  } else {
+    prepareModal('update');
+  }
 }
 
 function addBookToBooks() {
