@@ -115,6 +115,7 @@ const modal = document.querySelector('div#add-book-modal');
 const add = document.querySelector('button#add');
 // Get the <span> element that closes the modal
 const modalClose = document.querySelector('span.close');
+// eslint-disable-next-line max-len
 const updateBooksArrayButton = document.querySelector('button#update-books-array');
 console.log(updateBooksArrayButton);
 

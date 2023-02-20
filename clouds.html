@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="clouds.css">
+  <script src="clouds.js" defer></script>
+  <title>Library Tracker</title>
+</head>
+<body>
+  <body>
+    <div class="header">
+      <div class="header-bar">
+        <div class="search-components">
+          <div class="search-bar">
+            <input class="input-search" type="text">
+          </div>
+          <img class="search-svg svg" src="resources/search.svg">
+        </div>
+        <div class="header-bar-buttons">
+          <div class="header-bar-buttons-push"></div>
+          <button class="add-book-btn" id="add-book-btn">Add</button>
+          <button class="upload-books-btn" id="upload-books-btn">Upload</button>
+        </div>
+      </div>
+    </div>
+    <main>
+      <div class="content">
+        <div class="all-book-cards-view">
+          <div class="card">
+            <div class="card-field title">1-title</div>
+            <div class="card-field author">1-author</div>
+            <div class="card-field pages">1-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">2-title</div>
+            <div class="card-field author">2-author</div>
+            <div class="card-field pages">2-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">3-title</div>
+            <div class="card-field author">3-author</div>
+            <div class="card-field pages">3-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">4-title</div>
+            <div class="card-field author">4-author</div>
+            <div class="card-field pages">4-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">11-title</div>
+            <div class="card-field author">11-author</div>
+            <div class="card-field pages">11-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">12-title</div>
+            <div class="card-field author">12-author</div>
+            <div class="card-field pages">12-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">13-title</div>
+            <div class="card-field author">13-author</div>
+            <div class="card-field pages">13-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-field title">14-title</div>
+            <div class="card-field author">14-author</div>
+            <div class="card-field pages">14-pages</div>
+            <div class="card-field bottom-row">
+              <img class="edit-svg svg" src="resources/edit.svg" alt="">
+              <input type="checkbox" name="is-read" id="is-read">
+              <img class="delete-svg svg" src="resources/delete.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="modal-form">
+            <h1 class="form-title">TODO TITLE</h1>
+            <form action="">
+              <div class="form-input-container">
+                <label for="book-title">Title:</label>
+                <input 
+                  type="text" 
+                  name="book-title" 
+                  id="book-title"
+                  class="field"
+                />
+              </div>
+              <div class="form-input-container">
+                <label for="book-author">Author:</label>
+                <input 
+                  type="text" 
+                  name="book-author" 
+                  id="book-author"
+                  class="field"
+                />
+              </div>
+              <div class="form-input-container">
+                <label for="book-pages">Pages:</label>
+                <input 
+                  type="number"
+                  min="0" 
+                  name="book-pages" 
+                  id="book-pages"
+                  class="field"
+                />
+              </div>
+              <div class="form-input-container">
+                <label for="book-read">Read:</label>
+                <div class="read container">
+                  <input 
+                  type="checkbox" 
+                  name="book-read" 
+                  id="book-read"
+                  class="checkbox"
+                />
+                </div>
+              </div>
+              <div class="submit-modal-form">
+                <button type="submit" class="btn form-submit-button">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="footer">
+      <div class="footer-pattern">
+        <div class="footer-text left">
+          <span class="footer-text-item">About Us</span>
+          <span class="footer-text-item">Support Us</span>
+          <span class="footer-text-item">Contact Us</span>
+        </div>
+        <div class="footer-text right">
+          <span class="footer-text-item">News</span>
+          <span class="footer-text-item">Careers</span>
+          <span class="footer-text-item">TODO</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</body>
+</html>
