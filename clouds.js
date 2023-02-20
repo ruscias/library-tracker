@@ -55,18 +55,72 @@ const books = localStorageBooks ? localStorageBooks : dummyArray;
 // add event listeners
 const allBookCardsView = document.querySelector('div.all-book-cards-view');
 
-// initial functions
+// initial functions we need to run for page content
 
 // functions
+function toTitleCase(str) {
+  const lowercaseCharArray = str.toLowerCase().split('');
+  lowercaseCharArray[0] = lowercaseCharArray[0].toUpperCase();
+  return lowercaseCharArray.join('');
+}
+
+function createCompletedComponents(newComponent) {
+  // add edit svg
+  const newEditSvg = document.createElement('div');
+  newEditSvg.className = 'edit-svg svg';
+  newEditSvg.src = 'resources/edit.svg';
+  // add checkbox
+  const newCheckboxInput = document.createElement('input');
+  newCheckboxInput.type - 'checkbox';
+  newCheckboxInput.name = 'is-read';
+  newCheckboxInput.id = 'is-read';
+  // add delete svg
+  const newDeleteSvg = document.createElement('img');
+  newDeleteSvg.className = 'delete-svg svg';
+  newDeleteSvg.src = 'resources/delete.svg';
+  newComponent.appendChild(newEditSvg);
+  newComponent.appendChild(newCheckboxInput);
+  newComponent.appendChild(newDeleteSvg);
+}
+
+function createCardComponent(prop) {
+  const newComponent = document.createElement('div');
+  newComponent.className = `card-field ${prop}`;
+  newComponent.innerText = `${prop}`;
+  if (prop === 'completed') {
+    createCompletedComponents(newComponent);
+  }
+  return newComponent;
+}
+
+function createBookCard(book) {
+  const newCard = document.createElement('div.card');
+  for (const prop in book) {
+    const newComponent = createCardComponent(prop, book);
+    newCard.appendChild(newComponent);
+  }
+  const newTitle = document.createElement('div.card-field.title');
+  const newAuthor = document.createElement('div.card-field.author');
+  const newPages = document.createElement('div.card-field.pages');
+  const newRead = document.createElement('div.card-field.bottom-row');
+  const newEditSvg = document.createElement('img.edit-svg.svg');
+  const newCheckboxInput = document.createElement('input');
+  const newDeleteSvg = document.createElement('img.delete-svg.svg');
+  newCard.appendChild(newTitle);
+  newCard.appendChild(newAuthor);
+  newCard.appendChild(newPages);
+  newCard.appendChild(newRead);
+  newCard.appendChild(newEditSvg);
+  newCard.appendChild(newCheckboxInput);
+  newCard.appendChild(newDeleteSvg);
+  return newCard;
+}
+
 function deleteAllBookCards(books) {
   while (allBookCardsView.lastElementChild) {
     allBookCardsView.removeChild(allBookCardsView.lastElementChild);
   }
 };
-
-function createBookCard(book) {
-  console.log('create');
-}
 
 function renderBooks(books) {
   console.log('render');
