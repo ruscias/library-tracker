@@ -178,7 +178,7 @@ function renderBooks(books) {
   addEventListenersToEditSvgs();
 }
 
-function prepareModal(modalType) {
+function prepareModal(modalType, currentBookCard) {
   console.log(modal);
   const formTitle = document.querySelector('h1.form-title');
   if (modalType === 'add') {
@@ -186,6 +186,20 @@ function prepareModal(modalType) {
   } else {
     formTitle.innerText = 'Edit Book';
     // update form with current book's fields
+    const cardFields = currentBookCard.children;
+    const formInputs = form.children;
+    // old school loop to update formInputs based on currentBookCar's innerText
+    // stopping after first three elements since checkbox...
+    // ... will need a different approach
+    for (let i = 0; i < 3; i++ ) {
+      formInputs[i].children[1].value = cardFields[i].innerText;
+    }
+    // logic for populating the form checkbox appropriately
+    // modal default is unchecked so we don't need to do anything...
+    // ... if the book card isn't checked
+    if (cardFields[3].children[1].checked) {
+      formInputs[3].children[1].children[0].checked = true;
+    }
   }
 }
 
@@ -194,7 +208,7 @@ function showModal(e) {
   if (e.target.className === 'add-book-btn') {
     prepareModal('add');
   } else {
-    prepareModal('update');
+    prepareModal('update', e.target.parentElement.parentElement);
   }
 }
 
