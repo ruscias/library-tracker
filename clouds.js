@@ -24,7 +24,8 @@ const dummyArray = [
 ];
 
 // get books value from local storage (or null if it doesn't exist)
-const localStorageBooks = localStorage.getItem('books');
+const localStorageBooks = JSON.parse(localStorage.getItem('books'));
+
 // set books array to localStorage value if they exist, else to dummy values
 const books = localStorageBooks ? localStorageBooks : dummyArray;
 
@@ -101,6 +102,11 @@ function addEventListenersToEditSvgs() {
   for (const item of allEditSvgs) {
     item.addEventListener('click', showModal);
   }
+}
+
+function updateLocalStorage() {
+  localStorage.removeItem('books');
+  localStorage.setItem('books', JSON.stringify(books));
 }
 
 function createCompletedComponents(newComponent, completed) {
@@ -191,6 +197,7 @@ function hideModal(e) {
 function addBookToBooks(newBook) {
   books.push(newBook);
   renderBooks(books);
+  updateLocalStorage(true);
 }
 
 function updateBooksArray(index, updatedBook) {
