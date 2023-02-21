@@ -63,6 +63,7 @@ addButton.addEventListener('click', showModal);
 modal.addEventListener('click', hideModal);
 closeModal.addEventListener('click', hideModal);
 form.addEventListener('submit', processModalSubmit);
+inputSearch.addEventListener('keyup', inputSearchKeyup);
 
 // initial functions we need to run for page content
 // render the current array of books
@@ -93,6 +94,21 @@ function getBookIndex(title) {
       }
     }
   }
+}
+
+function searchBooks(string) {
+  const booksFound = books.filter((book) => {
+    return book.title.toLowerCase().includes(string) ||
+           book.author.toLowerCase().includes(string) ||
+           book.pages.toLowerCase().includes(string);
+  });
+  return booksFound;
+}
+
+function inputSearchKeyup(e) {
+  const inputContent = e.target.value;
+  const booksFound = searchBooks(inputContent.toString().toLowerCase());
+  console.log(booksFound);
 }
 
 function addEventListenersToEditSvgs() {
@@ -278,4 +294,3 @@ function processModalSubmit(e) {
     addBookToBooks(newBook);
   }
 }
-
