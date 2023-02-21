@@ -166,18 +166,34 @@ div.card {
 }
 
 .footer-pattern {
+  position: relative;
   height: 100%;
-  background-image: url(resources/cube-pattern.svg);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+/* no idea why but this makes the background pattern separate from everything */
+/* so now I can adjust the opacity of just the pattern */
+.footer-pattern::after {
+  content: '';
+  background-image: url(resources/cube-pattern.svg);
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;  
+}
+
 
 .footer-text {
   margin: var(--margin-standard);
   font-weight: 900;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .footer-text-item:hover {
