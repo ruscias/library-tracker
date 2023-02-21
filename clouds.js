@@ -66,7 +66,6 @@ form.addEventListener('submit', processModalSubmit);
 // initial functions we need to run for page content
 // render the current array of books
 renderBooks(books);
-addEventListenersToEditSvgs();
 
 // functions
 function toTitleCase(str) {
@@ -160,6 +159,7 @@ function renderBooks(books) {
     const newCard = createBookCard(book);
     allBookCardsView.appendChild(newCard);
   }
+  addEventListenersToEditSvgs();
 }
 
 function prepareModal(modalType) {
