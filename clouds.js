@@ -58,7 +58,7 @@ const closeModal = document.querySelector('.close-modal');
 const form = document.querySelector('.actual-modal-form-element');
 
 // add event listeners
-deleteAllButton.addEventListener('click', deleteAllBookCards);
+deleteAllButton.addEventListener('click', deleteAllBooks);
 addButton.addEventListener('click', showModal);
 modal.addEventListener('click', hideModal);
 closeModal.addEventListener('click', hideModal);
@@ -157,6 +157,12 @@ function deleteAllBookCards() {
   while (allBookCardsView.lastElementChild) {
     allBookCardsView.removeChild(allBookCardsView.lastElementChild);
   }
+}
+
+function deleteAllBooks() {
+  deleteAllBookCards();
+  books.length = 0;
+  updateLocalStorage();
 }
 
 function renderBooks(books) {
