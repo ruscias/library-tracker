@@ -7,6 +7,11 @@ html, body {
   font-family: sans-serif;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit; /* no underline */
+}
+
 body {
   display: flex;
   flex-direction: column;
