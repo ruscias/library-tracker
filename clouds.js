@@ -14,14 +14,32 @@ Book.prototype.changeCompleted = function() {
   this.completed = this.completed ? false : true;
 };
 
-// create dummy books
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295');
-const tuesdays = new Book('Tuesdays with Morrie', 'Mitch Albom', '192', true);
-
 // dummy array for testing
-const dummyArray = [
-  theHobbit, tuesdays,
-];
+const dummyArray = makeDummyBooks();
+
+// create dummy books
+function makeDummyBooks() {
+  const dummyArrayForFunction = [];
+  const arrayOfDummyBooks = [
+    ['Tuesdays with Morrie', 'Mitch Albom', '192', true],
+    ['The Martian', 'Andy Weir', '369', false],
+    ['Project Hail Mary', 'Andy Weir', '496', true],
+    ['S', 'Doug Dorst', '472', true],
+    ['How To Stop Time', 'Matt Haig', '352', false],
+    ['Depth', 'Lev A.C. Rosen', '272', false],
+    ['Good Omens', 'Gaiman & Pratchett', '288', true],
+    ['And the Mountains Echoed', 'Khaled Hosseini', '402', true],
+    ['This Is What It Sounds Like', 'Rogers & Ogas', '272', false],
+    ['The Hobbit', 'J.R.R. Tolkien', '295', false],
+  ];
+
+  for (let i = 0; i < arrayOfDummyBooks.length; i++) {
+    const item = arrayOfDummyBooks[i];
+    const newBook = new Book(item[0], item[1], item[2], item[3]);
+    dummyArrayForFunction.push(newBook);
+  }
+  return dummyArrayForFunction;
+}
 
 // get books value from local storage (or null if it doesn't exist)
 const localStorageBooks = JSON.parse(localStorage.getItem('books'));
@@ -96,21 +114,6 @@ function getBookIndex(title) {
   }
 }
 
-function searchBooks(string) {
-  const booksFound = books.filter((book) => {
-    return book.title.toLowerCase().includes(string) ||
-           book.author.toLowerCase().includes(string) ||
-           book.pages.toLowerCase().includes(string);
-  });
-  return booksFound;
-}
-
-function inputSearchKeyup(e) {
-  const inputContent = e.target.value;
-  const booksFound = searchBooks(inputContent.toString().toLowerCase());
-  console.log(booksFound);
-}
-
 function addEventListenersToEditSvgs() {
   const allEditSvgs = document.querySelectorAll('img.edit-svg');
 
@@ -125,6 +128,15 @@ function addEventListenersToDeleteSvgs() {
   for (const item of allDeleteSvgs) {
     item.addEventListener('click', deleteBook);
   }
+}
+
+function searchBooks(string) {
+  const booksFound = books.filter((book) => {
+    return book.title.toLowerCase().includes(string) ||
+           book.author.toLowerCase().includes(string) ||
+           book.pages.toLowerCase().includes(string);
+  });
+  return booksFound;
 }
 
 function updateLocalStorage() {
@@ -206,6 +218,12 @@ function renderBooks(books) {
   }
   addEventListenersToEditSvgs();
   addEventListenersToDeleteSvgs();
+}
+
+function inputSearchKeyup(e) {
+  const inputContent = e.target.value;
+  const booksFound = searchBooks(inputContent.toString().toLowerCase());
+  renderBooks(booksFound);
 }
 
 function prepareModal(modalType, currentBookCard) {
