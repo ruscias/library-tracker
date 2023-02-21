@@ -84,7 +84,6 @@ function getBookIndex(title) {
     for (const prop in book) {
       // if the prop is title...
       if (prop === 'title') {
-        console.log(book);
         // then check if the book's title prop is equal to...
         // ... the title we passed as a parameter
         if (book['title'].toLowerCase() === title.toLowerCase()) {
@@ -177,7 +176,10 @@ function deleteBook(e) {
   const currentBookCard = e.target.parentElement.parentElement;
   const bookCardTitle = currentBookCard.children[0].innerText;
   const index = getBookIndex(bookCardTitle);
-  // add logic to delete book
+  console.log(index);
+  books.splice(index, 1);
+  renderBooks(books);
+  updateLocalStorage();
 }
 
 function renderBooks(books) {
