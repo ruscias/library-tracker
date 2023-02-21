@@ -96,6 +96,10 @@ function getBookIndex(title) {
   }
 }
 
+function getBookCardElement() {
+  return bookCard;
+}
+
 function addEventListenersToEditSvgs() {
   const allEditSvgs = document.querySelectorAll('img.edit-svg');
 
@@ -203,11 +207,18 @@ function hideModal(e) {
 function addBookToBooks(newBook) {
   books.push(newBook);
   renderBooks(books);
-  updateLocalStorage(true);
+  updateLocalStorage();
 }
 
 function updateBooksArray(index, updatedBook) {
-  console.log('update');
+  const bookToUpdate = books[index];
+  for (const prop in updatedBook) {
+    if (updatedBook.hasOwnProperty(prop)) {
+      bookToUpdate[prop] = updatedBook[prop];
+    }
+  }
+  renderBooks(books);
+  updateLocalStorage();
 }
 
 function processModalSubmit(e) {
@@ -230,10 +241,11 @@ function processModalSubmit(e) {
 
   // set bookExists to index of book in books or undefined if it doesn't exist
   const bookExists = getBookIndex(newBook.title);
-
   // logic for handling add or update
   if (bookExists >= 0) {
-    updateBooksArray(bookExists, newBook);
+    // for clarity - if condition is true, we can assume bookExists is an index
+    const index = bookExists;
+    updateBooksArray(index, newBook);
   } else {
     addBookToBooks(newBook);
   }
