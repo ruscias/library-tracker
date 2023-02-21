@@ -182,17 +182,25 @@ function showModal(e) {
   }
 }
 
-function addBookToBooks() {
-  console.log('add');
+function hideModal(e) {
+  if (e.target === modal || e.target === closeModal) {
+    modal.style.display = 'none';
+  }
 }
 
-function updateBooksArray() {
+function addBookToBooks(newBook) {
+  books.push(newBook);
+  renderBooks(books);
+}
+
+function updateBooksArray(index, updatedBook) {
   console.log('update');
 }
 
 function processModalSubmit(e) {
   e.preventDefault();
 
+  modal.style.display = 'none';
   // this gets the form inputs and turns it into an object
   const data = new FormData(e.target);
   const newBook = new Book();
@@ -218,8 +226,3 @@ function processModalSubmit(e) {
   }
 }
 
-function hideModal(e) {
-  if (e.target === modal || e.target === closeModal) {
-    modal.style.display = 'none';
-  }
-}
