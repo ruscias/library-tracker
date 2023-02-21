@@ -96,15 +96,19 @@ function getBookIndex(title) {
   }
 }
 
-function getBookCardElement() {
-  return bookCard;
-}
-
 function addEventListenersToEditSvgs() {
   const allEditSvgs = document.querySelectorAll('img.edit-svg');
 
   for (const item of allEditSvgs) {
     item.addEventListener('click', showModal);
+  }
+}
+
+function addEventListenersToDeleteSvgs() {
+  const allDeleteSvgs = document.querySelectorAll('img.delete-svg');
+
+  for (const item of allDeleteSvgs) {
+    item.addEventListener('click', deleteBook);
   }
 }
 
@@ -169,6 +173,13 @@ function deleteAllBooks() {
   updateLocalStorage();
 }
 
+function deleteBook(e) {
+  const currentBookCard = e.target.parentElement.parentElement;
+  const bookCardTitle = currentBookCard.children[0].innerText;
+  const index = getBookIndex(bookCardTitle);
+  // add logic to delete book
+}
+
 function renderBooks(books) {
   deleteAllBookCards();
   for (const book of books) {
@@ -176,6 +187,7 @@ function renderBooks(books) {
     allBookCardsView.appendChild(newCard);
   }
   addEventListenersToEditSvgs();
+  addEventListenersToDeleteSvgs();
 }
 
 function prepareModal(modalType, currentBookCard) {
