@@ -114,6 +114,7 @@ function getBookIndex(title) {
   }
 }
 
+// add event listeners to any edit-svg on the page
 function addEventListenersToEditSvgs() {
   const allEditSvgs = document.querySelectorAll('img.edit-svg');
 
@@ -122,6 +123,7 @@ function addEventListenersToEditSvgs() {
   }
 }
 
+// add event listeners to delete-svgs on the page
 function addEventListenersToDeleteSvgs() {
   const allDeleteSvgs = document.querySelectorAll('img.delete-svg');
 
@@ -130,7 +132,12 @@ function addEventListenersToDeleteSvgs() {
   }
 }
 
+// searches the books array for a user provided string
 function searchBooks(string) {
+  // loop through the books array using filter
+  // if the title, author, or pages property includes the user string...
+  // ... return true. This will return the book to a new array.
+  // store this new array in booksFound
   const booksFound = books.filter((book) => {
     return book.title.toLowerCase().includes(string) ||
            book.author.toLowerCase().includes(string) ||
@@ -139,11 +146,13 @@ function searchBooks(string) {
   return booksFound;
 }
 
+// updates the user's browser's local storage value for books
 function updateLocalStorage() {
   localStorage.removeItem('books');
   localStorage.setItem('books', JSON.stringify(books));
 }
 
+// adds the components for each book card's div.completed value
 function createCompletedComponents(newComponent, completed) {
   // add edit svg
   const newEditSvg = document.createElement('img');
@@ -165,9 +174,15 @@ function createCompletedComponents(newComponent, completed) {
   return newComponent;
 }
 
+// create a book card component, as in, one of the divs...
+// /...representing a field nested in the parent "card" div
 function createCardComponent(prop, book) {
+  // create new div to store components of the current...
+  // ... field being generated
   const newComponent = document.createElement('div');
+  // set its class name
   newComponent.className = `card-field ${prop}`;
+  // special logic to handle the completed field, which is more complex
   if (prop === 'completed') {
     createCompletedComponents(newComponent, book[prop]);
     return newComponent;
@@ -176,6 +191,7 @@ function createCardComponent(prop, book) {
   return newComponent;
 }
 
+// creates a book card
 function createBookCard(book) {
   const newCard = document.createElement('div');
   newCard.className = 'card';
@@ -188,21 +204,28 @@ function createBookCard(book) {
   return newCard;
 }
 
+// deletes all book cards from the view
+// does not delete book cards from memory
 function deleteAllBookCards() {
   while (allBookCardsView.lastElementChild) {
     allBookCardsView.removeChild(allBookCardsView.lastElementChild);
   }
 }
 
+// this deletes all book cards from view and from memory
 function deleteAllBooks() {
   deleteAllBookCards();
   books.length = 0;
   updateLocalStorage();
 }
 
+// this deletes a single book card from view and memory...
+// ... based on whether or not...
+// ... it finds an element within books that matches the book card's title
 function deleteBook(e) {
   const currentBookCard = e.target.parentElement.parentElement;
   const bookCardTitle = currentBookCard.children[0].innerText;
+  // use getBook to search the books array for an element with that title
   const index = getBookIndex(bookCardTitle);
   console.log(index);
   books.splice(index, 1);
@@ -210,22 +233,31 @@ function deleteBook(e) {
   updateLocalStorage();
 }
 
+// this function displays all the elements in the books array...
+// ... to the user in the view
 function renderBooks(books) {
   deleteAllBookCards();
   for (const book of books) {
     const newCard = createBookCard(book);
     allBookCardsView.appendChild(newCard);
   }
+  // need to add event listeners to the card svgs...
+  // ... so the user can interact with them
   addEventListenersToEditSvgs();
   addEventListenersToDeleteSvgs();
 }
 
+// takes the current value in inputSearch and searchs the books array...
+// ... using searchBooks
+// then it changes the view to show the user...
+// ... the books found and *only* the books found
 function inputSearchKeyup(e) {
   const inputContent = e.target.value;
   const booksFound = searchBooks(inputContent.toString().toLowerCase());
   renderBooks(booksFound);
 }
 
+// prepares the modal based on whether user is trying to edit or add book
 function prepareModal(modalType, currentBookCard) {
   console.log(modal);
   const formTitle = document.querySelector('h1.form-title');
