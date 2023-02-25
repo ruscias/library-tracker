@@ -283,10 +283,12 @@ function prepareModal(modalType, currentBookCard) {
   }
 }
 
+// display modal to user in view
 function showModal(e) {
   modal.style.display = 'block';
   if (e.target.className === 'add-book-btn') {
-    prepareModal('add');
+    // adding nothing for consistency in parameter expectations
+    prepareModal('add', '');
   } else {
     prepareModal('update', e.target.parentElement.parentElement);
   }
